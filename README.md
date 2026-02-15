@@ -47,6 +47,7 @@ A custom cache layer:
 
 ---
 
+
 ## 📚 Commands
 
 | Command              | Description                      |
@@ -59,6 +60,16 @@ A custom cache layer:
 | `catch <pokemon>`    | Attempt to catch a Pokémon       |
 | `inspect <pokemon>`  | Show details of a caught Pokémon |
 | `pokedex`            | List all caught Pokémon          |
+
+---
+
+### 🎮 Demonstration
+
+<img width="1114" height="644" alt="Screenshot (251)" src="https://github.com/user-attachments/assets/a9e91f31-342d-4747-a7c7-04de0ba8b1d2" />
+
+<img width="1119" height="643" alt="Screenshot (252)" src="https://github.com/user-attachments/assets/2474fa3f-4da9-4a0c-9767-06039ca229bc" />
+
+<img width="1114" height="633" alt="Screenshot (253)" src="https://github.com/user-attachments/assets/9580826d-43a2-4e22-8312-87891607fb4b" />
 
 ---
 
