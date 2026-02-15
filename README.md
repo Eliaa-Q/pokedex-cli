@@ -63,7 +63,7 @@ A custom cache layer:
 
 ---
 
-### 🎮 Demonstration
+## 🎮 Demonstration
 
 <img width="1114" height="644" alt="Screenshot (251)" src="https://github.com/user-attachments/assets/a9e91f31-342d-4747-a7c7-04de0ba8b1d2" />
 
