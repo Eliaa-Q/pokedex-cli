@@ -1,58 +1,72 @@
-Pokedex CLI
 
-A TypeScript command-line application that interacts with the public PokeAPI.
-Users can explore locations, catch Pokémon, inspect their stats, and manage a personal Pokédex — all from the terminal.
+# 🧭 Pokedex CLI
 
-Architecture
+A **TypeScript command-line application** that interacts with the public **PokeAPI**.
+Explore locations, catch Pokémon, inspect their stats, and manage your own Pokédex — all from your terminal.
 
-REPL
-Handles user input, parses commands with arguments, and executes the correct command dynamically.
+---
 
-State Management
-A centralized State object stores:
+## 🚀 Features
 
-The readline interface
+* Interactive **REPL-based CLI**
+* Centralized **state management**
+* Custom **in-memory caching system**
+* Async API integration with PokeAPI
+* Modular command architecture
 
-Registered commands
+---
 
-The PokeAPI instance
+## 🏗 Architecture
 
-Pagination URLs
+### REPL
 
-A caughtPokemon record (the user's Pokédex)
+Handles:
 
-Caching
-A custom in-memory cache stores API responses with expiration to reduce repeated network calls and improve performance.
+* Reading user input
+* Parsing commands + arguments
+* Executing command callbacks dynamically
 
-PokeAPI Integration
-The app fetches:
+### State
 
-Location areas (paginated)
+A shared `State` object stores:
 
-Location details
+* Registered commands
+* The PokeAPI instance
+* Pagination URLs for maps
+* A `caughtPokemon` collection
 
-Individual Pokémon data
+This keeps the app modular and avoids global variables.
 
-All requests are handled asynchronously with proper error handling.
+### Cache
 
-Commands
+A custom cache layer:
 
-help — Display available commands
+* Stores API responses with timestamps
+* Automatically expires old entries
+* Reduces unnecessary network requests
 
-exit — Close the application
+---
 
-map — Next page of locations
+## 📚 Commands
 
-mapb — Previous page of locations
+| Command              | Description                      |
+| -------------------- | -------------------------------- |
+| `help`               | Show available commands          |
+| `exit`               | Exit the Pokédex                 |
+| `map`                | Get next page of locations       |
+| `mapb`               | Get previous page of locations   |
+| `explore <location>` | List Pokémon in a location       |
+| `catch <pokemon>`    | Attempt to catch a Pokémon       |
+| `inspect <pokemon>`  | Show details of a caught Pokémon |
+| `pokedex`            | List all caught Pokémon          |
 
-explore <location> — List Pokémon in a location
+---
 
-catch <pokemon> — Attempt to catch a Pokémon
+## 🛠 Installation
 
-inspect <pokemon> — Show details of a caught Pokémon
-
-pokedex — List all caught Pokémon
-
-Run
+```bash
 npm install
 npm run dev
+```
+
+---
