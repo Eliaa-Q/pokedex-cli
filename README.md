@@ -1,121 +1,84 @@
-# 🐦 Chirpy API
 
-A **TypeScript REST API** for a social platform where users can create chirps, authenticate securely, and upgrade to **Chirpy Red** membership via webhooks.
+
+# 🧭 Pokedex CLI
+
+A **TypeScript command-line application** that interacts with the public **PokeAPI**.
+Explore locations, catch Pokémon, inspect their stats, and manage your own Pokédex — all from your terminal.
 
 ---
 
 ## 🚀 Features
 
-* User authentication with **JWT access & refresh tokens**
-* Secure password hashing (Argon2)
-* CRUD operations for chirps
-* Webhook handling for membership upgrades
-* Middleware for logging, metrics, and error handling
-* PostgreSQL database with Drizzle ORM
-* Filtering and sorting on list endpoints
-* Security with API keys and authorization headers
+* Interactive **REPL-based CLI**
+* Centralized **state management**
+* Custom **in-memory caching system**
+* Async API integration with PokeAPI
+* Modular command architecture
 
 ---
 
 ## 🏗 Architecture
 
-The API uses Express.js and a modular structure.
+### REPL
 
-### Middleware
+Handles:
 
-* Request logging
-* Metrics collection
-* JSON parsing
-* Error handling
+* Reading user input
+* Parsing commands + arguments
+* Executing command callbacks dynamically
 
-Middleware improves security and maintainability.
+### State
 
----
+A shared `State` object stores:
 
-### Security (Auth)
+* Registered commands
+* The PokeAPI instance
+* Pagination URLs for maps
+* A `caughtPokemon` collection
 
-Authentication uses:
+This keeps the app modular and avoids global variables.
 
-* JWT access tokens
-* Refresh tokens
-* Password hashing
-* Authorization headers
+### Cache
 
-Protected routes require:
+A custom cache layer:
 
-Authorization: Bearer <token>
-
-Webhooks require:
-
-Authorization: ApiKey <key>
+* Stores API responses with timestamps
+* Automatically expires old entries
+* Reduces unnecessary network requests
 
 ---
 
-### Database
 
-* PostgreSQL
-* Drizzle ORM (type-safe queries)
-* SQL-level filtering
+## 📚 Commands
 
----
-
-## 📚 API Endpoints
-
-### Authentication
-
-| Endpoint     | Method | Description   |
-| ------------ | ------ | ------------- |
-| /api/users   | POST   | Create user   |
-| /api/login   | POST   | Authenticate  |
-| /api/refresh | POST   | Refresh token |
-| /api/users   | PUT    | Update user   |
+| Command              | Description                      |
+| -------------------- | -------------------------------- |
+| `help`               | Show available commands          |
+| `exit`               | Exit the Pokédex                 |
+| `map`                | Get next page of locations       |
+| `mapb`               | Get previous page of locations   |
+| `explore <location>` | List Pokémon in a location       |
+| `catch <pokemon>`    | Attempt to catch a Pokémon       |
+| `inspect <pokemon>`  | Show details of a caught Pokémon |
+| `pokedex`            | List all caught Pokémon          |
 
 ---
 
-### Chirps
+## 🎮 Demonstration
 
-| Endpoint        | Method | Description                 |
-| --------------- | ------ | --------------------------- |
-| /api/chirps     | POST   | Create chirp                |
-| /api/chirps     | GET    | List chirps (filter & sort) |
-| /api/chirps/:id | GET    | Get chirp                   |
-| /api/chirps/:id | DELETE | Delete chirp                |
+<img width="1114" height="644" alt="Screenshot (251)" src="https://github.com/user-attachments/assets/a9e91f31-342d-4747-a7c7-04de0ba8b1d2" />
 
-Query options:
+<img width="1119" height="643" alt="Screenshot (252)" src="https://github.com/user-attachments/assets/2474fa3f-4da9-4a0c-9767-06039ca229bc" />
 
-* authorId — filter by user
-* sort=asc (default)
-* sort=desc
-
----
-
-### Webhooks
-
-| Endpoint            | Method | Description         |
-| ------------------- | ------ | ------------------- |
-| /api/polka/webhooks | POST   | Membership upgrades |
-
-Security:
-
-* API key required
-* Unsupported events ignored
-* Proper HTTP codes
-
----
-
-## 🔐 Security Highlights
-
-* Passwords are hashed
-* Tokens are short-lived
-* API keys protect webhooks
-* Errors do not leak internals
-* Authorization enforced per route
+<img width="1114" height="633" alt="Screenshot (253)" src="https://github.com/user-attachments/assets/9580826d-43a2-4e22-8312-87891607fb4b" />
 
 ---
 
 ## 🛠 Installation
 
+```bash
 npm install
 npm run dev
+```
 
 ---
